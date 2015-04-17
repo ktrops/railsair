@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  get "/inquiry" => "inquiries#inquiry",  :as => :inquiry
+  get "/inquiryresults" => "inquiries#inquiryresults", :as => :inquiryresults
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

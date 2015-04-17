@@ -1,0 +1,29 @@
+<h3>Airport Info for <%= @tsa_data.airportname %></h3>
+<h5>Security Wait Times</h5>
+<table border=1>
+	<thead>
+		<tr>
+			<td><b>Checkpoint</b></td>
+			<td><b>Wait Time (minutes)</b></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @tsa_data.recentwaits.each do |k,v| %>
+		<tr>
+			<td><%= k %></td>
+			<td align="center"><%= v %></td>
+		</tr>
+		<% end %> 
+	</tbody>
+</table>
+<h5>Weather Data</h5>
+<table border=1>
+<tr>
+	<td>Weather Conditions</td>
+	<td><%= @faa_data["weather"]["weather"] %></td>
+</tr>
+<tr>
+	<td>Wind:</td>
+	<td><%= @faa_data["weather"]["wind"] %>
+</tr>
+</table>
