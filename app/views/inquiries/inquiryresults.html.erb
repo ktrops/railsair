@@ -1,0 +1,45 @@
+<% if !@tsa_data.nil? && !@faa_data.nil? %>
+
+<h3>Airport Info for <%= @tsa_data.airportname %></h3>
+<% if @faa_data["delay"] == "true" %>
+  <h3 style="color:red">DELAY CONDITION: <%= @faa_data["status"]["reason"]%></h3>
+  <% end %>
+<h4>Security Wait Times</h4>
+<table border=1>
+	<thead>
+		<tr>
+			<td><b>Checkpoint</b></td>
+			<td><b>Wait Time (minutes)</b></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @tsa_data.recentwaits.each do |k,v| %>
+		<tr>
+			<td><%= k %></td>
+			<td align="center"><%= v %></td>
+		</tr>
+		<% end %> 
+	</tbody>
+</table>
+<h4>Weather: <%= @faa_data["weather"]["weather"] %></h4>
+<table border=1>
+<tr>
+	<td><b>Wind:</b></td>
+	<td><%= @faa_data["weather"]["wind"] %>
+</tr>
+<tr>
+	<td><b>Temp:</b></td>
+	<td><%= @faa_data["weather"]["temp"] %>
+</tr>
+<tr>
+	<td><b>Visibility:</b></td>
+	<td><%= @faa_data["weather"]["visibility"] %>
+</tr>
+<tr>
+	<td><b>Updated:</b></td>
+	<td><%= @faa_data["weather"]["meta"]["updated"] %>
+</tr>
+</table>
+<% elsif %>
+<h3>Data services not available at this time. Please try again later</h3>
+<% end %>

@@ -47,6 +47,6 @@ group :development, :test do
   
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'webmock'
+  # gem 'webmock'
 end
 
