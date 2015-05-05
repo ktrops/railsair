@@ -1,8 +1,23 @@
-
-<%= notice %>
-<h3>Get Security Wait Times and Weather for any US Aiport Here</h3>
+<h3>Get Security Wait Times and Weather for any US Airport Here</h3>
   <%= form_tag("/inquiryresults", method: "get") do %>
     <%= label_tag(:airport, "Airport Code:") %>
     <%= text_field_tag(:airport) %>
     <%= submit_tag("Get Info") %>
   <% end %>
+  
+<% if !@airport_data.nil? %>
+<%= render :partial => 'results', :collection => @airport_data %>
+<% end %>
+
+<% if !current_user.nil? %>
+<h5>Add an Airport</h5>
+
+<%= form_tag("/saved_airports/create", method: "post") do %>
+
+  <%= label_tag(:airportcode, "Airport Code") %>
+  <%= text_field :saved_airport, :airportcode %>
+
+  <%= hidden_field(:saved_airport, :user_id, :value => current_user.id)%>
+ <%= submit_tag("Add Airport", class:"btn btn-primary btn-xs") %>
+<% end %>
+<% end %>

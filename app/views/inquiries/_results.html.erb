@@ -1,0 +1,45 @@
+<% if !results.nil? %>
+
+<h3>Airport Info for <%= results[:tsa_data].airportname %></h3>
+<% if results[:faa_data]["delay"] == "true" %>
+  <h3 style="color:red">DELAY CONDITION: <%= results[:faa_data]["status"]["reason"]%></h3>
+  <% end %>
+<h4>Security Wait Times</h4>
+<table border=1>
+	<thead>
+		<tr>
+			<td><b>Checkpoint</b></td>
+			<td><b>Wait Time (minutes)</b></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% results[:tsa_data].recentwaits.each do |k,v| %>
+		<tr>
+			<td><%= k %></td>
+			<td align="center"><%= v %></td>
+		</tr>
+		<% end %> 
+	</tbody>
+</table>
+<h4>Weather: <%= results[:faa_data]["weather"]["weather"] %></h4>
+<table border=1>
+<tr>
+	<td><b>Wind:</b></td>
+	<td><%= results[:faa_data]["weather"]["wind"] %>
+</tr>
+<tr>
+	<td><b>Temp:</b></td>
+	<td><%= results[:faa_data]["weather"]["temp"] %>
+</tr>
+<tr>
+	<td><b>Visibility:</b></td>
+	<td><%= results[:faa_data]["weather"]["visibility"] %>
+</tr>
+<tr>
+	<td><b>Updated:</b></td>
+	<td><%= results[:faa_data]["weather"]["meta"]["updated"] %>
+</tr>
+</table>
+<% elsif %>
+<h3>Data services not available at this time. Please try again later</h3>
+<% end %>

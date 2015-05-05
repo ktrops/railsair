@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   
+  post 'saved_airports/create' => 'saved_airports#create', as: :create_airport
+
+  get 'login' => 'sessions#new', as: :login
+  post 'login' => 'sessions#create'
+  get 'logout' => 'sessions#destroy', as: :logout
+
   get "/inquiry" => "inquiries#inquiry",  :as => :inquiry
   get "/inquiryresults" => "inquiries#inquiryresults", :as => :inquiryresults
 
