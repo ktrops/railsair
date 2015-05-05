@@ -7,7 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+	
+<% if session[:user_id].nil? %>
+<%= link_to "Sign In", login_path %>
+<% elsif %>
+<%= link_to "Sign Out", logout_path %>
+<% end %>
+<br>
+<%= notice %>
+<br>
 <%= yield %>
 
 </body>
