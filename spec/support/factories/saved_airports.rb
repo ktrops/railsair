@@ -1,7 +1,7 @@
 FactoryGirl.define do
+  
   factory :saved_airport do
-    user_id 1
-airportcode "MyString"
+    airportcode {["SEA","ORD","JFK","DEN","PDX"].sample}
   end
 
 end
