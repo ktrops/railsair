@@ -1,12 +1,11 @@
-<<<<<<< HEAD
+
 <%= notice %>
 <% if @user.errors.any? %>
 	<%= @user.errors.full_messages.each do |msg| %>
 		<%= msg %>
 	<% end %>
 <% end %>
-=======
->>>>>>> 39b2bbf46fbbc9c9417b37657954a05e469c17e7
+
 <h3>Sign Up</h3>
 <%= form_for @user do |f| %>
 	<%= f.label :name %>

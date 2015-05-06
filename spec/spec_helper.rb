@@ -59,6 +59,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
+  config.include Rails.application.routes.url_helpers
 
 
 # The settings below are suggested to provide a good initial experience
