@@ -9,6 +9,14 @@ class SavedAirportsController < ApplicationController
 		end
 	end
 
+  def destroy
+      airport = SavedAirport.find(params[:id])
+      unless airport.nil?
+        airport.destroy
+      end
+      redirect_to inquiry_path, notice: "Airport Removed" 
+  end
+
 	private
 
 		def saved_airport_params

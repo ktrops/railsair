@@ -1,11 +1,17 @@
+<div class="col-md-1"></div>
+<div class="col-md-11">
 <% if !results.nil? %>
-
-<h3>Airport Info for <%= results[:tsa_data].airportname %></h3>
+<h4>Airport Info for <%= results[:tsa_data].airportname %><%= button_to "Remove Airport", { action: "destroy", controller:"saved_airports", id: results[:id] }, class:"btn btn-primary btn-xs", method: :delete, data: { confirm: "Are you sure?" }%></h4>
 <% if results[:faa_data]["delay"] == "true" %>
-  <h3 style="color:red">DELAY CONDITION: <%= results[:faa_data]["status"]["reason"]%></h3>
+  <h4 style="color:red">DELAY CONDITION: <%= results[:faa_data]["status"]["reason"]%></h4>
   <% end %>
-<h4>Security Wait Times</h4>
-<table border=1>
+</div>
+</div>
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-6">
+<h5>Security Wait Times</h5>
+<table class="table table-condensed">
 	<thead>
 		<tr>
 			<td><b>Checkpoint</b></td>
@@ -21,8 +27,10 @@
 		<% end %> 
 	</tbody>
 </table>
-<h4>Weather: <%= results[:faa_data]["weather"]["weather"] %></h4>
-<table border=1>
+</div>
+<div class="col-md-5">
+<h5>Weather: <%= results[:faa_data]["weather"]["weather"] %></h5>
+<table class="table table-condensed">
 <tr>
 	<td><b>Wind:</b></td>
 	<td><%= results[:faa_data]["weather"]["wind"] %>
@@ -40,6 +48,12 @@
 	<td><%= results[:faa_data]["weather"]["meta"]["updated"] %>
 </tr>
 </table>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
 <% elsif %>
 <h3>Data services not available at this time. Please try again later</h3>
 <% end %>
+</div>
+

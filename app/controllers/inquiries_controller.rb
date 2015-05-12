@@ -9,7 +9,7 @@ class InquiriesController < ApplicationController
       airports.each do |airport|
         tsa_data = get_tsa_data airport.airportcode
         faa_data = get_faa_data airport.airportcode
-        @airport_data << {:tsa_data => tsa_data,:faa_data => faa_data}
+        @airport_data << {:id => airport.id,:tsa_data => tsa_data,:faa_data => faa_data}
       end
     end
   end

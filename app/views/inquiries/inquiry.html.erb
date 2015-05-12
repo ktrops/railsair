@@ -1,23 +1,47 @@
-<h3>Get Security Wait Times and Weather for any US Airport Here</h3>
-  <%= form_tag("/inquiryresults", method: "get") do %>
-    <%= label_tag(:airport, "Airport Code:") %>
-    <%= text_field_tag(:airport) %>
-    <%= submit_tag("Get Info") %>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+    <h3>Get Security Wait Times and Weather for any US Airport Here</h3>
+    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    <h4>Quick Search:</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+      <%= form_tag("/inquiryresults", method: "get") do %>
+      <%= label_tag(:airport, "Airport Code:") %>
+      <%= text_field_tag(:airport) %>
+      <%= submit_tag("Get Info") %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+      <h4> Your Airports:</h4>
+    </div>
+  </div>
+  <div class="row">
+    <% if !@airport_data.nil? %>
+    <%= render :partial => 'results', :collection => @airport_data %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-11">
+    <% if !current_user.nil? %>
+      <h5>Add an Airport to Your Airports:</h5>
+      <%= form_tag("/saved_airports/create", method: "post") do %>
+      <%= label_tag(:airportcode, "Airport Code") %>
+      <%= text_field :saved_airport, :airportcode %>
+      <%= hidden_field(:saved_airport, :user_id, :value => current_user.id)%>
+      <%= submit_tag("Add Airport", class:"btn btn-primary btn-xs") %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
   
-<% if !@airport_data.nil? %>
-<%= render :partial => 'results', :collection => @airport_data %>
-<% end %>
 
-<% if !current_user.nil? %>
-<h5>Add an Airport</h5>
 
-<%= form_tag("/saved_airports/create", method: "post") do %>
-
-  <%= label_tag(:airportcode, "Airport Code") %>
-  <%= text_field :saved_airport, :airportcode %>
-
-  <%= hidden_field(:saved_airport, :user_id, :value => current_user.id)%>
- <%= submit_tag("Add Airport", class:"btn btn-primary btn-xs") %>
-<% end %>
-<% end %>
