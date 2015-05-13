@@ -20,4 +20,13 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
   
+  def google
+    auth = request.env["omniauth.auth"]
+    user = User.where(uid: auth["uid"]).first || User.from_google(auth)
+    if user
+      session[:user_id] = user.id
+      flash[:notice] = "You have been logged in through Google."
+      redirect_back_or root_url
+    end
+  end
 end

@@ -14,6 +14,14 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+if Rails.env == 'production'
+  GOOGLE = { client_id: ENV['client_id'], client_secret: ENV['client_secret'] }
+else
+  GOOGLE = YAML.load(File.read(File.expand_path('../google.yml', __FILE__)))
+  GOOGLE.merge! GOOGLE.fetch(Rails.env, {})
+  GOOGLE.symbolize_keys!
+end
+
 module Railsair
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

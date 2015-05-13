@@ -1,3 +1,4 @@
+require 'securerandom'
 require 'valid_email'
 class User < ActiveRecord::Base
   
@@ -10,4 +11,14 @@ class User < ActiveRecord::Base
 
 	has_secure_password 
 	validates :password, length: { minimum: 6 }
+
+  def self.from_google(auth)
+    create! do |user|
+      user.name = auth.info.nickname
+      user.uid = auth.uid
+      user.google_token = auth.credentials.token
+      user.google_secret = auth.credentials.secret
+      user.password = SecureRandom.hex
+      end
+    end
 end
