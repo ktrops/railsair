@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root 'users#new'
 
   #oauth
-  get '/auth/google_oauth2/callback', to: 'sessions#google', as: :google_oauth2
+  get '/auth/google_oauth2/callback', to: 'sessions#google', as: :auth_google_oauth2
   get '/auth/google_oauth2/failure', to: 'sessions#failure'
   
   # The priority is based upon order of creation: first created -> highest priority.

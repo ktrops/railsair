@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   
   def google
     auth = request.env["omniauth.auth"]
+    pp request.env
     user = User.where(uid: auth["uid"]).first || User.from_google(auth)
     if user
       session[:user_id] = user.id
