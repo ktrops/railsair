@@ -12,18 +12,18 @@
       <%= form_tag("/inquiryresults", method: "get") do %>
       <%= label_tag(:airport, "Airport Code:") %>
       <%= text_field_tag(:airport) %>
-      <%= submit_tag("Get Info") %>
+      <%= submit_tag("Get Info",class: "btn btn-primary btn-xs") %>
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-<hr style="width: 100%; color: black; height: 1px; background-color:black;" />
-      <h4> Your Airports:</h4>
-    </div>
-  </div>
-  <div class="row">
     <% if !@airport_data.nil? %>
+	<div class="row">
+	  <div class="col-md-12">
+	    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+	    <h4> Your Airports:</h4>
+	    </div>
+	</div>
+	<div class="row">
     <%= render :partial => 'results', :collection => @airport_data %>
     <% end %>
   </div>
