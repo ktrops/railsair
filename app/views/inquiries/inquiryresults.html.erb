@@ -1,3 +1,10 @@
-<%= render :partial => 'results', :collection => @airport_data %>
-<br>
-<%= link_to "My Home", inquiry_path %>
+<div class="container-fluid">
+  <div class="row">
+  <%= render :partial => 'results', :collection => @airport_data %>
+</div>
+<div class="row">
+  <div class="col-md-12">	
+  <%= link_to "Home", inquiry_path %>
+  </div>
+</div>
+</div>
