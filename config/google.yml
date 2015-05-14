@@ -1,0 +1,8 @@
+
+development: 
+  google_client_id: '808350797761-i11633f7ijaandq1t5rg9jdbvdbp3te2.apps.googleusercontent.com'
+  google_client_secret: 'WrqqvG3okgyeMTJb1CI_uc6Y'
+
+test:
+  google_client_id: '808350797761-i11633f7ijaandq1t5rg9jdbvdbp3te2.apps.googleusercontent.com'
+  google_client_secret: 'WrqqvG3okgyeMTJb1CI_uc6Y'

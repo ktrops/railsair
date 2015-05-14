@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      UserMailer.welcome_email(@user).deliver_later(wait: 1.minute)
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to inquiry_path, notice: "You have signed up"
     else
       render :new, notice: "Try again"

@@ -7,14 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="row">
+      </div>
+      <div class="row">
+        <div class="col-md-1">
 <% if session[:user_id].nil? %>
-<%= link_to "Sign In", login_path %>
+    <div class="navbar-header">
+  <%= button_to "sign up", new_user_path, :method => :get, class:"btn btn-primary navbar-btn" %>
+    </div>
+    </div>
+    <div class="col-md-1">
+      <div class="navbar-header">
+  <%= button_to "sign in", login_path, :method => :get, class:"btn btn-primary navbar-btn" %>
+      </div>
 <% elsif %>
-<%= link_to "Sign Out", logout_path %>
+<div class="navbar-header">
+<%= link_to"Sign Out", logout_path, class:"btn btn-primary navbar-btn" %>
+</div>
 <% end %>
+        </div>
+      </div>
+  </div>
+</nav>
+
 <br>
-<%= notice %>
+<% if !notice.nil? %>
+<div class="alert alert-info" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <%= notice %></div>
+  <% end %>
 <br>
 <%= yield %>
 
