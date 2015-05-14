@@ -2,7 +2,7 @@
 <div class="col-md-11">
 <% if !results.nil? %>
 <h4>Airport Info for <%= results[:tsa_data].airportname %>
-	<% if !current_user.nil? %>
+	<% if !current_user.nil? && action_name != "inquiryresults" %>
 	<%= button_to "Remove Airport", { action: "destroy", controller:"saved_airports", id: results[:id] }, class:"btn btn-primary btn-xs", method: :delete, data: { confirm: "Are you sure you want to remove this airport?" }%>
 	<% end %></h4>
 <% if results[:faa_data]["delay"] == "true" %>
